@@ -24,13 +24,12 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.6",
-    packages=setuptools.find_packages(".", include=("zcommons", "zcommons.*")),
+    packages=setuptools.find_packages(".", include=("hexagon", "hexagon.*")),
     package_data={
-        "zcommons": ["resources/*"]
+        "hexagon": ["resources/*"]
     },
     include_package_data=True,
     install_requires=[
-        "colorama",
-        "dataclasses;python_version<'3.7'"
+        "zcommons",
     ]
 )
