@@ -5,6 +5,7 @@ from hexagon import utils
 from hexagon.compile import Compiler
 from hexagon.diff import Diff
 from hexagon.generate import Generator
+from hexagon.template import Template
 from hexagon.log import set_level
 
 
@@ -68,7 +69,7 @@ def parse_args(args):
     generate.add_argument("--std-lang",
                           type=str, default=None,
                           help="std source code language")
-    generate.add_argument("--std-lang",
+    generate.add_argument("--std-args",
                           type=str, default=None,
                           help="std source code compile args")
     generate.add_argument("--std-bin",
@@ -100,7 +101,7 @@ def parse_args(args):
     diff.add_argument("--std-lang",
                       type=str, default=None,
                       help="std source code language")
-    diff.add_argument("--std-lang",
+    diff.add_argument("--std-args",
                       type=str, default=None,
                       help="std source code compile args")
     diff.add_argument("--std-bin",
@@ -122,6 +123,14 @@ def parse_args(args):
     diff.add_argument("--fail-fast",
                       action="store_true",
                       help="whether exit when fc failed.")
+
+    template = add_common_argument(subparsers.add_parser("template"))
+    template.add_argument("--path",
+                          type=str, required=True,
+                          help="generate template directory")
+    template.add_argument("--clean",
+                          action="store_true",
+                          help="whether clean the directory before generating template")
 
     return parser.parse_args(args)
 
@@ -149,6 +158,9 @@ def hexagon(args=None):
                     fc_path=args.fc_path, fc_cls=args.fc_cls, rand_round=args.rand_round,
                     use_stdout=args.use_stdout, fail_fast=args.fail_fast, timeout=args.timeout)
         diff.diff()
+    elif args.action == "template":
+        template = Template(path=args.path, clean=args.clean)
+        template.generate()
     else:
         logger.error(f"Unsupported action {args.action}")
 
