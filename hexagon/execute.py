@@ -38,7 +38,7 @@ class Executor(object):
                 basename = basename[:-3]
             cmd = ["python", "-m", basename]
         else:
-            cmd = [basename]
+            cmd = [os.path.abspath(basename)]
         if self.args:
             cmd.append(self.args)
 
