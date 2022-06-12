@@ -85,7 +85,7 @@ class Compiler(object):
             if utils.is_win32():
                 cmd.extend(["cmd", "/c", "copy"])
             else:
-                cmd.extend(["bash", "-c", "cp"])
+                cmd.extend(["cp"])
             cmd.append(src)
             cmd.append(dst)
         else:
