@@ -1,5 +1,6 @@
 import logging
 import os
+import subprocess
 
 import zcommons as zc
 
@@ -58,8 +59,11 @@ class Diff(object):
                 in_path, out_path = f"{self.data}/{i}.in", f"{self.data}/{i}.out"
                 if not os.path.exists(in_path):
                     break
-                self.__execute_sources(fc_cls, in_path, out_path)
+                logger.debug(f"Diff round #{i}")
+                if not self.__execute_sources(fc_cls, in_path, out_path):
+                    return
         elif self.mode == "rand":
+            self.fail_fast = True
             gen = Generator("rand", os.path.join(fc_dir), gen_path=self.gen_path, gen_cls=self.gen_cls,
                             std_src=self.std_src, std_args=self.std_args, std_lang=self.std_lang, std_bin=self.std_bin,
                             timeout=self.timeout)
@@ -67,7 +71,8 @@ class Diff(object):
             for i in range(self.rand_round):
                 logger.info(f"Running round #{i+1}")
                 gen.generate()
-                self.__execute_sources(fc_cls, in_path, out_path)
+                if not self.__execute_sources(fc_cls, in_path, out_path):
+                    return
         else:
             raise ValueError(f"Unsupported mode {self.mode}")
 
@@ -76,7 +81,8 @@ class Diff(object):
         for idx, src in enumerate(self.sources):
             logger.debug(f"Running {src}")
             tmp_out_path = os.path.join(fc_dir, f"{idx}.out")
-            self.__compilers[idx].executor.execute(in_path, tmp_out_path)
+            if not self.__compilers[idx].executor.execute(in_path, tmp_out_path):
+                return False
             if idx == 0:
                 if self.use_stdout:
                     if not self._fc(fc_cls,
@@ -100,6 +106,7 @@ class Diff(object):
                 else:
                     logger.info(
                         f"{zc.FORE_GREEN}PASSED{zc.FORE_RESET}: Comparison between {self.sources[idx - 1]} and {self.sources[idx]}")
+        return True
 
     def __compile_sources(self):
         ret = []

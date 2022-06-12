@@ -4,6 +4,8 @@ import random
 import subprocess
 from pathlib import WindowsPath, PosixPath
 
+import zcommons as zc
+
 from hexagon.constants import Lang
 
 
@@ -76,9 +78,11 @@ def run_subprocess(cmd, timeout, stdin, stdout, stderr, logger):
             stdout = subprocess.PIPE
         if stderr is None:
             stderr = subprocess.PIPE
+    tmer = zc.Timer(unit="ms")
+    tmer.start()
     try:
         logger.debug(f"Run subprocess {cmd}")
-        cp = subprocess.run(cmd, timeout=timeout, stdin=stdin, stdout=stdout, stderr=stderr)
+        cp = subprocess.run(cmd, timeout=timeout/1000, stdin=stdin, stdout=stdout, stderr=stderr)
         logger.debug(f"Subprocess ends, return code is {cp.returncode}")
         return 0, cp.returncode
     except subprocess.TimeoutExpired:
@@ -87,6 +91,9 @@ def run_subprocess(cmd, timeout, stdin, stdout, stderr, logger):
     except Exception as e:
         logger.error(f"Unknown error occurred while the subprocess {cmd} running: {str(e)}")
         return 2, 0
+    finally:
+        tmer.stop()
+        logger.debug(f"Subprocess ends, cost {tmer.elapsed()[0]}ms.")
 
 
 class WorkdirContext(object):
@@ -152,4 +159,4 @@ class FileContext(object):
 class Global(object):
 
     tmp_dir = "tmp"
-    timeout = 3
+    timeout = 3000

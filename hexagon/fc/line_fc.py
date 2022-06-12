@@ -30,7 +30,7 @@ class LineFC(FC):
             dst_lines = self.__remove_end_lf(dst_f.readlines())
         if self.ignore > 0:
             src_lines = self.__remove_be_blank_line(src_lines)
-            src_lines = self.__remove_be_blank_line(dst_lines)
+            dst_lines = self.__remove_be_blank_line(dst_lines)
         if self.ignore > 1:
             src_lines = self.__remove_be_blank_line(src_lines)
             dst_lines = self.__remove_all_blank_line(dst_lines)

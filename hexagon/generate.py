@@ -7,7 +7,7 @@ import zcommons as zc
 from hexagon import utils
 from hexagon.compile import Compiler
 from hexagon.execute import Executor
-from hexagon import *
+from hexagon.data import *
 
 
 logger = logging.getLogger("hexagon.generate")

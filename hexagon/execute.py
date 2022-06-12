@@ -24,6 +24,7 @@ class Executor(object):
                 return self._execute(context.stdin, context.stdout)
         except Exception as e:
             logger.error(str(e))
+            return False
 
     def _execute(self, stdin, stdout):
         workdir = os.path.dirname(self.path)
@@ -42,4 +43,4 @@ class Executor(object):
             cmd.append(self.args)
 
         with utils.WorkdirContext(workdir):
-            return utils.run_subprocess(cmd, self.timeout, stdin, stdout, None, logger) == 0, 0
+            return utils.run_subprocess(cmd, self.timeout, stdin, stdout, None, logger) == (0, 0)
