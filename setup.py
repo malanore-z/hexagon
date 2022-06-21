@@ -6,16 +6,16 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 
 setuptools.setup(
-    name="hexagon",
+    name="cgd",
     version="0.0.1",
     author="malanore.z",
     author_email="malanore.z@gmail.com",
     description="A auxiliary tool for algorithm competition questioner.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/malanore-z/hexagon",
+    url="https://github.com/malanore-z/cgd",
     project_urls={
-        "Bug Tracker": "https://github.com/malanore-z/hexagon/issues",
+        "Bug Tracker": "https://github.com/malanore-z/cgd/issues",
     },
     classifiers=[
         "Intended Audience :: Developers",
@@ -24,9 +24,9 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.6",
-    packages=setuptools.find_packages(".", include=("hexagon", "hexagon.*")),
+    packages=setuptools.find_packages(".", include=("cgd", "cgd.*")),
     package_data={
-        "hexagon": ["resources/*"]
+        "cgd": ["resources/*"]
     },
     include_package_data=True,
     install_requires=[

@@ -43,7 +43,7 @@ config = {
             "formatter": "common",
             "stream": "ext://sys.stdout"
         },
-        "hexagon": {
+        "cgd": {
             "class": "logging.StreamHandler",
             "level": "DEBUG",
             "formatter": "common",
@@ -54,10 +54,10 @@ config = {
         },
     },
     "loggers": {
-        "hexagon": {
+        "cgd": {
             "level": "INFO",
             "handlers": [
-                "hexagon"
+                "cgd"
             ],
             "propagate": False
         }
@@ -68,5 +68,5 @@ logging.config.dictConfig(config)
 
 
 def set_level(level):
-    logger = logging.getLogger("hexagon")
+    logger = logging.getLogger("cgd")
     logger.setLevel(level)

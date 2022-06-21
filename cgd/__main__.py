@@ -1,4 +1,4 @@
-from hexagon.cli_main import hexagon
+from cgd.cli_main import hexagon
 
 
 if __name__ == "__main__":

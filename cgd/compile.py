@@ -3,12 +3,12 @@ import os
 
 import zcommons as zc
 
-from hexagon import utils
-from hexagon.constants import Lang, DEFAULT_ARGS
-from hexagon.execute import Executor
+from cgd import utils
+from cgd.constants import Lang, DEFAULT_ARGS
+from cgd.execute import Executor
 
 
-logger = logging.getLogger("hexagon.compile")
+logger = logging.getLogger("cgd.compile")
 
 
 class Compiler(object):

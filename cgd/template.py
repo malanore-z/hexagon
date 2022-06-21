@@ -64,7 +64,7 @@ if __name__ == "__main__":
 GEN_PY = """import typing
 from dataclasses import dataclass
 
-from hexagon import BaseSample, BaseGenerator
+from cgd import BaseSample, BaseGenerator
 
 
 @dataclass

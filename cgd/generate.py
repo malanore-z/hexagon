@@ -4,13 +4,13 @@ import typing
 
 import zcommons as zc
 
-from hexagon import utils
-from hexagon.compile import Compiler
-from hexagon.execute import Executor
-from hexagon.data import *
+from cgd import utils
+from cgd.compile import Compiler
+from cgd.execute import Executor
+from cgd.data import *
 
 
-logger = logging.getLogger("hexagon.generate")
+logger = logging.getLogger("cgd.generate")
 
 
 class Generator(object):

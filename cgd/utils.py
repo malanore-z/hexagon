@@ -6,7 +6,7 @@ from pathlib import WindowsPath, PosixPath
 
 import zcommons as zc
 
-from hexagon.constants import Lang
+from cgd.constants import Lang
 
 
 __ext_2_lang = {

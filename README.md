@@ -1,6 +1,8 @@
-# Hexagon
+# CGD
 
-`python -m hexagon subcommand args...`
+*Compile-Generate-Diff*
+
+`python -m cgd subcommand args...`
 
 ## Compile
 

@@ -4,12 +4,12 @@ import subprocess
 
 import zcommons as zc
 
-from hexagon import utils
-from hexagon.compile import Compiler
-from hexagon.generate import Generator
+from cgd import utils
+from cgd.compile import Compiler
+from cgd.generate import Generator
 
 
-logger = logging.getLogger("hexagon.diff")
+logger = logging.getLogger("cgd.diff")
 
 
 class Diff(object):

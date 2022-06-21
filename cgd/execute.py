@@ -1,11 +1,11 @@
 import logging
 import os
 
-from hexagon import utils
-from hexagon.constants import Lang
+from cgd import utils
+from cgd.constants import Lang
 
 
-logger = logging.getLogger("hexagon.execute")
+logger = logging.getLogger("cgd.execute")
 
 
 class Executor(object):

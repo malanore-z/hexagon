@@ -1,15 +1,15 @@
 import argparse
 import logging
 
-from hexagon import utils
-from hexagon.compile import Compiler
-from hexagon.diff import Diff
-from hexagon.generate import Generator
-from hexagon.template import Template
-from hexagon.log import set_level
+from cgd import utils
+from cgd.compile import Compiler
+from cgd.diff import Diff
+from cgd.generate import Generator
+from cgd.template import Template
+from cgd.log import set_level
 
 
-logger = logging.getLogger("hexagon")
+logger = logging.getLogger("cgd")
 
 
 def add_common_argument(parser: argparse.ArgumentParser):
@@ -27,8 +27,8 @@ def add_common_argument(parser: argparse.ArgumentParser):
 
 
 def parse_args(args):
-    parser = argparse.ArgumentParser(description="hexagon")
-    subparsers = parser.add_subparsers(dest="action", title="hexagon subparsers")
+    parser = argparse.ArgumentParser(description="cgd")
+    subparsers = parser.add_subparsers(dest="action", title="cgd subparsers")
 
     compile = add_common_argument(subparsers.add_parser("compile"))
     compile.add_argument("sources",
@@ -112,7 +112,7 @@ def parse_args(args):
                       type=str, default=None,
                       help="file comparator path")
     diff.add_argument("--fc-cls",
-                      type=str, default="hexagon.fc.IgnoreBEBlankLineFC",
+                      type=str, default="cgd.fc.IgnoreBEBlankLineFC",
                       help="file comparator class name")
     diff.add_argument("--rand-round",
                       type=int, default=50,
