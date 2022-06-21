@@ -1,11 +1,3 @@
-# CGD
+# Hexagon
 
-*Compile-Generate-Diff*
-
-`python -m cgd subcommand args...`
-
-## Compile
-
-## Generate
-
-## Diff
+Redirect: [CGD](https://github.com/malanore-z/CGD)
